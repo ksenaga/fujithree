@@ -1,0 +1,152 @@
+/* contact */
+.contact {
+  padding: 60px 24px;
+}
+
+/* ===============================
+   contact-hero
+================================ */
+.contact-hero {
+  max-width: 600px;
+  margin: 0 auto 60px;
+}
+
+.contact-hero h1 {
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+
+.contact-hero p {
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.contact-hero span {
+  display: block;
+}
+
+/* ===============================
+   お問い合わせフォーム
+================================ */
+.contact-forms {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.form-group label span {
+  color: #d32f2f;
+  margin-left: 4px;
+}
+
+.form-group select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath fill='%23333' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 20px center;
+  background-size: 12px;
+}
+
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.form-group select{
+  padding: 10px;
+  font-family: "Noto Sans JP", sans-serif;
+  color: #666;
+  line-height: 1.6;
+}
+
+.form-group textarea {
+  resize: none;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  padding: 10px;
+}
+
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #1976d2;
+}
+
+/* checkbox */
+.form-check {
+  margin: 20px 0;
+  font-size: 0.95rem;
+}
+
+/* button */
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: #1976d2;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 50px;
+}
+
+.submit-btn:hover {
+  opacity: 0.9;
+}
+
+/* ===============================
+   SP / Tablet（999px以下）
+================================ */
+@media (max-width: 999px) {
+  .contact-hero,
+  .contact-forms {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+}
+
+.privacy-box {
+  height: 120px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow-y: auto;
+  background-color: #fff;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.privacy-box p,
+.privacy-box h3,
+.privacy-box ul {
+  margin-top: 0;
+  margin-bottom: 1em;
+}

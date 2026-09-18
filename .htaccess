@@ -1,0 +1,62 @@
+RewriteEngine On
+
+# クリックジャッキング対策: 他サイトのiframeに埋め込ませない
+# （特にログイン画面を透明なiframeで重ねられて誤操作を誘導される対策）
+Header always set X-Frame-Options "SAMEORIGIN"
+
+# MIMEタイプスニッフィング対策
+Header always set X-Content-Type-Options "nosniff"
+
+# 他サイトへ遷移する際にフルURL（クエリ文字列等）を送らないようにする
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+# JS/CSSはブラウザに毎回サーバーへ再検証させる（更新後も古いキャッシュが
+# 使われ続けることを防ぐ。ETag/Last-Modifiedにより実質的な再ダウンロードは
+# 変更があった時だけ）
+<FilesMatch "\.(js|css)$">
+    Header set Cache-Control "no-cache"
+</FilesMatch>
+
+# .env などドットファイルへの直接アクセスを404として扱う
+# （403だと「保護されたファイルが存在する」ことが分かってしまうため、
+# 　存在しないふりをして404にする）
+# .well-known/ はSSL証明書自動更新(Let's Encrypt等)で本番で必要になるため除外
+RewriteCond %{REQUEST_URI} !^/\.well-known/
+RewriteRule (^|/)\. - [R=404,L]
+
+# lib/ 配下（内部共通処理）への直接アクセスも同様に404として扱う
+RewriteRule ^lib/ - [R=404,L]
+
+# 拡張子なしURL → .php
+# 存在チェックは %{REQUEST_FILENAME} ではなく %{DOCUMENT_ROOT}%{REQUEST_URI} で行う。
+# %{REQUEST_FILENAME} は存在しないパスに対して「存在するファイル名+PATH_INFO」に
+# 分割されることがあり（例: /about/x → about + PATH_INFO "/x"）、その結果
+# about.html が存在するために誤って -f が真になり、.html が無限に付加されて
+# 500 (internal redirect limit) になる不具合があったため。
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-d
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.php -f
+RewriteRule ^(.+)$ $1.php [L]
+
+# 拡張子なしURL → .html（理由は上記と同じ）
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-d
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.html -f
+RewriteRule ^(.+)$ $1.html [L]
+
+# .php への直接アクセスを拡張子なしURLへリダイレクト（アドレスバーに.phpを出さない）
+# GETのみ対象（POSTを巻き込むとブラウザがPOST→GETに変換しフォーム送信が壊れるため）
+# api/ 配下はJSからfetchで直接呼ぶJSON専用エンドポイントなので対象外
+# %{ENV:REDIRECT_STATUS} が空でない場合は ErrorDocument による内部リダイレクト中
+# （404ページの表示中など）なので対象外にする。含めないと THE_REQUEST が
+# 元のリクエスト行のまま残るため、404.html の表示中にこのルールが
+# 誤って再発火し、エラーページの代わりにリダイレクトされてしまう。
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteCond %{REQUEST_METHOD} =GET
+RewriteCond %{REQUEST_URI} !^/api/
+RewriteCond %{THE_REQUEST} \s/+([^?\s]+)\.php[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# トップページ
+DirectoryIndex index.html
+
+# 404ページ
+ErrorDocument 404 /404.html

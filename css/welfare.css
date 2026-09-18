@@ -1,0 +1,80 @@
+/* =========================
+   中央カラム
+========================= */
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px 20px;
+}
+
+/* 見出し（中央配置の左寄せ） */
+h2 {
+  text-align: left;
+  margin-bottom: 32px;
+}
+
+.floor {
+  margin-bottom: 40px;
+}
+
+.floor h3 {
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+/* =========================
+   部屋一覧（Grid）
+========================= */
+.building{
+  background-color: #fff;
+  padding: 10px 20px;
+  margin-bottom: 30px;
+}
+
+.room-list {
+  display: grid;
+  gap: 20px;
+  justify-content: center;
+}
+
+.room-card {
+  width: 110px;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* 状態色 */
+.vacant {
+  background: #c8f7c5;
+}
+
+.occupied {
+  background: #f7c5c5;
+}
+
+/* =========================
+   画面幅別の列数
+========================= */
+
+/* 1000px以上 → 5列 */
+@media (min-width: 1000px) {
+  .room-list {
+    grid-template-columns: repeat(5, 120px);
+  }
+}
+
+/* 500px〜999px → 3列 */
+@media (min-width: 500px) and (max-width: 999px) {
+  .room-list {
+    grid-template-columns: repeat(3, 120px);
+  }
+}
+
+/* 499px以下 → 2列 */
+@media (max-width: 499px) {
+  .room-list {
+    grid-template-columns: repeat(2, 120px);
+  }
+}

@@ -1,0 +1,133 @@
+/* ===== 全体 ===== */
+.about {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ===============================
+   hero-about section
+================================ */
+.about-hero {
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 0 50px;
+}
+
+.about-hero h1 {
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+
+.about-hero p {
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.about-hero span {
+  display: block;
+}
+
+/* ===============================
+   会社情報
+================================ */
+.about-company {
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 0 50px;
+}
+
+.company-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.company-item {
+  display: grid;
+  grid-template-columns: clamp(180px, 35%, 280px) 1fr;
+  column-gap: clamp(24px, 5vw, 64px);
+  width: 100%;
+  max-width: 1000px;
+  padding: clamp(16px, 3vw, 24px) 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.company-item dt,
+.company-item dd {
+  text-align: left;
+  font-size: clamp(0.938rem, 0.71rem + 1.14vw, 1.563rem);
+}
+
+.company-item dd {
+  margin: 0;
+  font-size: clamp(1.1rem, 1vw + 0.6rem, 1.2rem);
+}
+
+.company-item dt {
+  margin: 0;
+  font-size: clamp(1.2rem, 1vw + 0.7rem, 1.3rem);
+}
+
+/* ===============================
+   事業紹介
+================================ */
+
+.about-business {
+  max-width: 1200px;
+  margin: clamp(80px, 12vw, 120px) auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.business-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 5vw, 48px);
+  justify-content: center;
+}
+
+.business-card {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 40px);
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.business-card h3 {
+  font-size: clamp(1.4rem, 2vw, 1.6rem);
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.business-card p {
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.business-card ul {
+  padding-left: 1.2em;
+  margin: 0;
+  list-style: disc;
+}
+
+.business-card li {
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  line-height: 1.9;
+}
+
+@media (max-width: 999px) {
+  .business-grid {
+    grid-template-columns: 1fr;
+  }
+}
