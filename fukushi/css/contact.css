@@ -1,0 +1,115 @@
+.contact-hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 3% 0;
+  text-align: center;
+}
+
+.contact-hero h1 {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.contact-hero p {
+  color: rgb(63, 63, 63);
+  line-height: 1.8;
+}
+
+.contact-form-section {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 32px 3% 80px;
+}
+
+.form-message {
+  margin: 0 0 24px;
+  padding: 14px 18px;
+  border-radius: 8px;
+  font-size: 18px;
+  background: #f5d590;
+  color: rgb(63, 63, 63);
+}
+
+.form-message-line {
+  white-space: nowrap;
+}
+
+.form-message.is-error {
+  background: #fdeaea;
+  color: #b3261e;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-field label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  color: rgb(63, 63, 63);
+}
+
+.required-badge {
+  font-size: 11px;
+  color: #fff;
+  background: #e8a07c;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.form-field input,
+.form-field textarea {
+  font-family: inherit;
+  font-size: 15px;
+  color: rgb(63, 63, 63);
+  padding: 12px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: #e8a07c;
+}
+
+.form-field textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.form-field--hidden {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-submit {
+  align-self: center;
+  padding: 14px 48px;
+  border: none;
+  border-radius: 999px;
+  background: #e8a07c;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.form-submit:hover {
+  opacity: 0.85;
+}

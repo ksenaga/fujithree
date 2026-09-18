@@ -27,6 +27,18 @@ RewriteRule (^|/)\. - [R=404,L]
 # lib/ 配下（内部共通処理）への直接アクセスも同様に404として扱う
 RewriteRule ^lib/ - [R=404,L]
 
+# index.html への直接アクセスをディレクトリルートへ301
+# （例: /index.html → /、/fukushi/index.html → /fukushi/）
+# %{ENV:REDIRECT_STATUS} のガードは下の.phpリダイレクトと同じ理由
+# （404.html表示中の誤発火防止）
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L]
+
+# 他の *.html への直接アクセスを拡張子なしURLへ301（正規化・旧リンク救済）
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteCond %{THE_REQUEST} \s/+(.+)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
 # 拡張子なしURL → .php
 # 存在チェックは %{REQUEST_FILENAME} ではなく %{DOCUMENT_ROOT}%{REQUEST_URI} で行う。
 # %{REQUEST_FILENAME} は存在しないパスに対して「存在するファイル名+PATH_INFO」に
@@ -54,6 +66,22 @@ RewriteCond %{REQUEST_METHOD} =GET
 RewriteCond %{REQUEST_URI} !^/api/
 RewriteCond %{THE_REQUEST} \s/+([^?\s]+)\.php[\s?] [NC]
 RewriteRule ^ /%1 [R=301,L]
+
+# テキスト圧縮 (gzip)
+<IfModule mod_deflate.c>
+  <IfModule mod_filter.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript text/javascript application/json image/svg+xml
+  </IfModule>
+</IfModule>
+
+# 画像のキャッシュ保存期間（JS/CSSは上記の no-cache 方針を優先するため対象外）
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType image/x-icon "access plus 30 days"
+</IfModule>
 
 # トップページ
 DirectoryIndex index.html

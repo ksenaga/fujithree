@@ -1,0 +1,60 @@
+.company-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 3% 0;
+}
+
+.company-hero {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.company-hero h1 {
+  font-size: 32px;
+}
+
+/* ===============================
+   会社情報
+================================ */
+.company-info {
+  margin-bottom: 64px;
+}
+
+.company-list {
+  margin: 0;
+  border-top: 1px solid #f5d590;
+}
+
+.company-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px 4px;
+  border-bottom: 1px solid #f5d590;
+}
+
+.company-item dt {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 700;
+  color: #e8a07c;
+  font-size: 14px;
+}
+
+.company-item dd {
+  margin: 0;
+  color: rgb(63, 63, 63);
+  line-height: 1.7;
+}
+
+@media (min-width: 901px) {
+  .company-item {
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .company-item dt {
+    flex-shrink: 0;
+    width: 160px;
+  }
+}

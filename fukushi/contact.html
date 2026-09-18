@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/webp" href="images/logo/three-smiles.webp" />
+    <link rel="preload" as="image" href="images/logo/three-smiles.webp" fetchpriority="high">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ | FUJI THREE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload="this.media='all'; this.onload=null;">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/contact.css">
+</head>
+<body>
+    <main id="contact-page">
+        <section class="contact-hero">
+            <h1>お問い合わせ</h1>
+            <p>グループホーム・就労支援に関するご相談やご質問など、お気軽にお問い合わせください。</p>
+        </section>
+
+        <section class="contact-form-section">
+            <h5 id="formMessage" class="form-message" hidden></h5>
+
+            <form class="contact-form" action="contact-send.php" method="post">
+                <div class="form-field">
+                    <label for="name">お名前<span class="required-badge">必須</span></label>
+                    <input type="text" id="name" name="name" autocomplete="name" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="tel">電話番号<span class="required-badge">必須</span></label>
+                    <input type="tel" id="tel" name="tel" autocomplete="tel" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="email">メールアドレス<span class="required-badge">必須</span></label>
+                    <input type="email" id="email" name="email" autocomplete="email" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="message">お問い合わせ内容<span class="required-badge">必須</span></label>
+                    <textarea id="message" name="message" rows="6" required></textarea>
+                </div>
+
+                <div class="form-field form-field--hidden" aria-hidden="true">
+                    <label for="website">website</label>
+                    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <button type="submit" class="form-submit">送信する</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="js/main.js" defer></script>
+    <script src="js/contact.js" defer></script>
+</body>
+</html>

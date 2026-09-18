@@ -67,10 +67,20 @@ const displayMessage = (type, message) => {
     }, 5000);
 };
 
+const errorMessages = {
+    required: '必須項目が入力されていません。',
+    email: 'メールアドレスの形式が正しくありません。',
+    too_long: '入力内容が長すぎます。文字数を減らして再度お試しください。',
+    rate_limited: '短時間に送信が集中しています。しばらくしてから再度お試しください。',
+    invalid_request: '不正なリクエストです。',
+    send_failed: 'メール送信に失敗しました。お電話でのお問い合わせをお願いいたします。',
+};
+
 if (urlParams.get('success') === 'true') {
     displayMessage('success', 'お問い合わせありがとうございます。担当者より連絡させていただきます。');
-} else if (urlParams.get('error') === 'true') {
-    displayMessage('error', 'メール送信に失敗しました。お電話でのお問い合わせをお願いいたします。');
+} else if (urlParams.has('error')) {
+    const message = errorMessages[urlParams.get('error')] || 'エラーが発生しました。';
+    displayMessage('error', message);
 }
 
 // 補助関数もアロー関数に

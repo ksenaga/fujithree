@@ -1,0 +1,285 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.group-homes-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 48px 3% 80px;
+}
+
+.group-homes-hero {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.group-homes-hero h1 {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.group-homes-hero p {
+  color: rgb(63, 63, 63);
+  line-height: 1.8;
+}
+
+/* ===============================
+   目次
+================================ */
+.group-homes-toc {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  margin-bottom: 80px;
+}
+
+.toc-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  padding: 16px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid #f5d590;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.toc-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(232, 160, 124, 0.25);
+}
+
+.toc-item img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.toc-item-name {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 700;
+  color: rgb(63, 63, 63);
+}
+
+/* ===============================
+   各グループホーム
+================================ */
+.group-home-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.group-home-section {
+  scroll-margin-top: 110px;
+  text-align: center;
+}
+
+.group-home-name {
+  font-size: 26px;
+  margin-bottom: 24px;
+}
+
+/* ギャラリー */
+.group-home-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 901px) {
+  .group-home-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+.gallery-item {
+  margin: 0;
+}
+
+.gallery-item img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.gallery-item--floor img {
+  object-fit: contain;
+  background: #faf6ee;
+}
+
+.gallery-item figcaption {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #e8a07c;
+}
+
+/* 施設詳細 */
+.group-home-detail {
+  max-width: 880px;
+  margin: 32px auto 0;
+  text-align: left;
+}
+
+.detail-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.detail-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.detail-card {
+  padding: 20px 24px;
+  border-radius: 16px;
+  background: #faf6ee;
+  border: 1px solid #f5d590;
+}
+
+.detail-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  margin: 0 0 12px;
+}
+
+.detail-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: #e8a07c;
+}
+
+.detail-card p {
+  margin: 0;
+  color: rgb(63, 63, 63);
+  line-height: 1.8;
+}
+
+.feature-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feature-list li {
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid #f5d590;
+  font-size: 14px;
+  color: rgb(63, 63, 63);
+}
+
+.detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+.detail-table:last-child {
+  margin-bottom: 0;
+}
+
+.detail-table th,
+.detail-table td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+}
+
+.detail-table th {
+  width: 120px;
+  background: #f5d590;
+  color: rgb(63, 63, 63);
+  font-weight: 700;
+}
+
+.detail-note {
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: #777;
+  line-height: 1.7;
+}
+
+@media (min-width: 901px) {
+  .detail-columns {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: start;
+  }
+}
+
+/* LINEでお問い合わせ */
+.group-home-line-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 32px;
+  padding: 14px 32px;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid var(--line-color, #06c755);
+  color: var(--line-color, #06c755);
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.2s ease;
+}
+
+.group-home-line-btn:hover {
+  opacity: 0.85;
+}
+
+.group-home-line-btn .line-icon {
+  width: 30px;
+  height: 30px;
+}
+
+/* ===============================
+   Topへ戻るボタン
+================================ */
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: #e8a07c;
+  color: #fff;
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.2s ease;
+  z-index: 100;
+}
+
+.back-to-top:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 600px) {
+  .group-homes-toc {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
