@@ -27,6 +27,11 @@ RewriteRule (^|/)\. - [R=404,L]
 # lib/ 配下（内部共通処理）への直接アクセスも同様に404として扱う
 RewriteRule ^lib/ - [R=404,L]
 
+# api/ 配下はフォーム送信専用（POST）のエンドポイントのため、
+# ブラウザで直接開く・クローラーが辿るなどのGET等は403で拒否する
+RewriteCond %{REQUEST_METHOD} !=POST
+RewriteRule ^(.*/)?api/ - [F,L]
+
 # index.html への直接アクセスをディレクトリルートへ301
 # （例: /index.html → /、/fukushi/index.html → /fukushi/）
 # %{ENV:REDIRECT_STATUS} のガードは下の.phpリダイレクトと同じ理由

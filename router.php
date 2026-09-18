@@ -26,11 +26,18 @@ if (preg_match('#^/lib/#', $uri)) {
     return serve_404($root);
 }
 
-// .php への直接アクセスは拡張子なしURLへリダイレクト（GETのみ、/api/配下は除外）
+// .php への直接アクセスは拡張子なしURLへリダイレクト（GETのみ、api/配下は除外）
 if ($_SERVER['REQUEST_METHOD'] === 'GET'
-    && !preg_match('#^/api/#', $uri)
+    && !preg_match('#(^|/)api/#', $uri)
     && preg_match('#\.php$#', $uri)) {
     header('Location: ' . preg_replace('#\.php$#', '', $uri), true, 301);
+    return true;
+}
+
+// api/ 配下はフォーム送信専用（POST）のエンドポイントのため、GET等は403
+if (preg_match('#(^|/)api/#', $uri) && $_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(403);
+    echo 'Forbidden';
     return true;
 }
 

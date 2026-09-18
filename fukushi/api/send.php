@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-require __DIR__ . "/../lib/contact-mailer.php";
+require __DIR__ . "/../../lib/contact-mailer.php";
 
-const REDIRECT_BASE = "contact";
+const REDIRECT_BASE = "/fukushi/contact";
 
 // 文字数の上限
 const MAX_LENGTH_NAME    = 100;
@@ -73,5 +73,29 @@ $headers = "From: no-reply@fujithree.com\r\n"
     . "Reply-To: {$email}\r\n";
 
 $sent = mb_send_mail($to, $subject, $body, $headers);
+
+// 送信者本人への受付完了メール（管理者への通知が成功した場合のみ送る）
+if ($sent) {
+    $autoReplySubject = "【FUJI THREE】お問い合わせありがとうございます";
+
+    $autoReplyBody = "{$name} 様\n\n"
+        . "このたびは、FUJI THREEへお問い合わせいただき、誠にありがとうございます。\n"
+        . "以下の内容にて、お問い合わせを受け付けいたしました。\n\n"
+        . "────────────────────\n"
+        . "お名前：{$name}\n"
+        . "電話番号：{$tel}\n"
+        . "お問い合わせ内容：\n{$message}\n"
+        . "────────────────────\n\n"
+        . "内容を確認のうえ、担当者より改めてご連絡いたしますので、\n"
+        . "今しばらくお待ちくださいますようお願い申し上げます。\n\n"
+        . "なお、このメールは送信専用となっております。\n"
+        . "本メールへご返信いただいてもお答えできません。\n"
+        . "お急ぎのご用件がございましたら、下記までご連絡ください。\n\n"
+        . "050-3749-5455\n";
+
+    $autoReplyHeaders = "From: FUJI THREE <information@fujithree.com>\r\n";
+
+    mb_send_mail($email, $autoReplySubject, $autoReplyBody, $autoReplyHeaders);
+}
 
 contactRedirect(REDIRECT_BASE, $sent ? "sent=1" : "error=send_failed");
