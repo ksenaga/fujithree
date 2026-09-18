@@ -59,8 +59,7 @@ $name  = contactStripNewlines($name);
 $tel   = contactStripNewlines($tel);
 $email = contactStripNewlines($email);
 
-// TODO: 実際の問い合わせ受信用メールアドレスに変更してください
-$to = "example@exm.com";
+$to = "information@fujithree.com";
 
 $subject = "【FUJI THREE】お問い合わせがありました";
 
@@ -70,8 +69,7 @@ $body = "FUJI THREEのお問い合わせフォームより送信がありまし�
     . "メールアドレス: {$email}\n"
     . "お問い合わせ内容:\n{$message}\n";
 
-// TODO: 実際の送信元ドメインのメールアドレスに変更してください
-$headers = "From: no-reply@example.com\r\n"
+$headers = "From: no-reply@fujithree.com\r\n"
     . "Reply-To: {$email}\r\n";
 
 $sent = mb_send_mail($to, $subject, $body, $headers);
